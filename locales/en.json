@@ -4,6 +4,13 @@
     "error": "Something went wrong"
   },
   "restaurantList": {
-    "title": "Restaurants"
+    "title": "Nando's Restaurants"
+  },
+  "errors": {
+    "timeout": "Request timed out",
+    "network": "No network connection",
+    "server": "Server error",
+    "client": "Client error",
+    "unknown": "Unknown error"
   }
 }

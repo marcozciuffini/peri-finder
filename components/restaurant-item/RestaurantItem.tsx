@@ -1,7 +1,6 @@
 import * as WebBrowser from 'expo-web-browser';
-import { Pressable, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 
-import { ThemedText } from '@/components/themed-text';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { type Restaurant } from '@/types/apiResponseTypes';
 import { createStyles } from './styles/RestaurantItem.styles';
@@ -15,21 +14,21 @@ const RestaurantItem = ({ restaurant }: Props) => {
   const styles = createStyles(theme);
   const { streetAddress, addressLocality, postalCode } = restaurant.geo.address;
 
-  const onNamePress = () => WebBrowser.openBrowserAsync(restaurant.url)
+  const onNamePress = () => WebBrowser.openBrowserAsync(restaurant.url);
 
   return (
     <View style={styles.item}>
       <Pressable onPress={onNamePress}>
-        <ThemedText style={styles.name} numberOfLines={1}>
+        <Text style={styles.name} numberOfLines={1}>
           {restaurant.name}
-        </ThemedText>
+        </Text>
       </Pressable>
-      <ThemedText style={styles.address} numberOfLines={1}>
+      <Text style={styles.address} numberOfLines={1}>
         {streetAddress}
-      </ThemedText>
-      <ThemedText style={styles.locality} numberOfLines={1}>
+      </Text>
+      <Text style={styles.locality} numberOfLines={1}>
         {`${addressLocality}, ${postalCode}`}
-      </ThemedText>
+      </Text>
     </View>
   );
 };

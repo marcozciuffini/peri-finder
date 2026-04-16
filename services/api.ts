@@ -1,4 +1,5 @@
 import { ApiResponse, create } from "apisauce";
+import i18n from "@/i18n";
 
 import { ApiResult, Restaurant, RestaurantsResponse } from "@/types/apiResponseTypes";
 
@@ -10,16 +11,16 @@ const nandosApi = create({
 const getErrorMessage = (problem: string | null = null): string => {
   switch (problem) {
     case "TIMEOUT_ERROR":
-      return "Request timed out";
+      return i18n.t("errors.timeout");
     case "NETWORK_ERROR":
     case "CONNECTION_ERROR":
-      return "No network connection";
+      return i18n.t("errors.network");
     case "SERVER_ERROR":
-      return "Server error";
+      return i18n.t("errors.server");
     case "CLIENT_ERROR":
-      return "Client error";
+      return i18n.t("errors.client");
     default:
-      return "Unknown error";
+      return i18n.t("errors.unknown");
   }
 };
 
@@ -37,7 +38,10 @@ const handleResponse = <T>(res: ApiResponse<T>): ApiResult<T> => {
   };
 };
 
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
 export const fetchRestaurants = async (): Promise<ApiResult<Restaurant[]>> => {
+  await delay(1500);
   const res = await nandosApi.get<RestaurantsResponse>("/restaurantlist.json");
   const result = handleResponse(res);
 
