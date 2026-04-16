@@ -1,0 +1,9 @@
+{
+  "home": {
+    "loading": "Loading restaurants...",
+    "error": "Something went wrong"
+  },
+  "restaurantList": {
+    "title": "Restaurants"
+  }
+}
