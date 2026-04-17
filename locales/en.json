@@ -1,7 +1,8 @@
 {
   "home": {
     "loading": "Loading restaurants...",
-    "error": "Something went wrong"
+    "error": "Something went wrong",
+    "retry": "Try again"
   },
   "restaurantList": {
     "title": "Nando's Restaurants",

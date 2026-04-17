@@ -6,25 +6,30 @@
 import { Platform } from 'react-native';
 import { AppTheme } from '@/types/theme';
 
-const nandosRed = '#C8102E';
-const nandosDark = '#1A0A0A';
+export const Palette = {
+  monza: '#CE0A24',       // 206, 10, 36
+  amaranth: '#EB3F55',    // 235, 63, 85
+  mauvelous: '#F091AA',   // 240, 145, 170
+  brightSun: '#FFCD41',   // 255, 205, 65
+  black: '#000000',
+};
 
 export const Colors = {
   light: {
-    text: '#1A0A0A',
+    text: Palette.black,
     background: '#FFF8F8',
-    tint: nandosRed,
+    tint: Palette.monza,
     icon: '#7A5C5C',
     tabIconDefault: '#7A5C5C',
-    tabIconSelected: nandosRed,
+    tabIconSelected: Palette.monza,
   },
   dark: {
     text: '#F5EDED',
-    background: nandosDark,
-    tint: '#FF4D6A',
+    background: '#1A0A0A',
+    tint: Palette.amaranth,
     icon: '#A08080',
     tabIconDefault: '#A08080',
-    tabIconSelected: '#FF4D6A',
+    tabIconSelected: Palette.amaranth,
   },
 };
 
@@ -35,10 +40,10 @@ export const AppThemes: Record<'light' | 'dark', AppTheme> = {
       background: '#FFF8F8',
       surface: '#FFF0F0',
       border: '#F2D6D6',
-      text: '#1A0A0A',
+      text: Palette.black,
       icon: '#7A5C5C',
-      tint: nandosRed,
-      error: '#EF5350',
+      tint: Palette.monza,
+      error: Palette.amaranth,
     },
   },
   dark: {
@@ -49,10 +54,17 @@ export const AppThemes: Record<'light' | 'dark', AppTheme> = {
       border: '#3D1A1A',
       text: '#F5EDED',
       icon: '#A08080',
-      tint: '#FF4D6A',
-      error: '#EF5350',
+      tint: Palette.amaranth,
+      error: Palette.mauvelous,
     },
   },
+};
+
+export const FontFamily = {
+  brand: 'NandosHand',
+  regular: 'Barlow_400Regular',
+  medium: 'Barlow_500Medium',
+  semiBold: 'Barlow_600SemiBold',
 };
 
 export const Fonts = Platform.select({

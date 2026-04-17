@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, Text, View } from 'react-native';
+import { ActivityIndicator, FlatList, Pressable, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import RestaurantItem from '@/components/restaurant-item/RestaurantItem';
@@ -12,8 +12,11 @@ import { createStyles } from './styles/RestaurantList.styles';
 
 type Props = {
   restaurants: Restaurant[];
+  loading: boolean;
   refreshing: boolean;
   onRefresh: () => void;
+  error?: string | null;
+  onRetry?: () => void;
 };
 
 const keyExtractor = (item: Restaurant) => item.url;
@@ -26,7 +29,7 @@ const getItemLayout = (_: ArrayLike<Restaurant> | null | undefined, index: numbe
 
 const appVersion = getVersion();
 
-const RestaurantList = ({ restaurants, refreshing, onRefresh }: Props) => {
+const RestaurantList = ({ restaurants, loading, refreshing, onRefresh, error, onRetry }: Props) => {
   const { t } = useTranslation();
   const theme = useAppTheme();
   const styles = createStyles(theme);
@@ -36,8 +39,27 @@ const RestaurantList = ({ restaurants, refreshing, onRefresh }: Props) => {
     []
   );
 
+  const ListEmptyComponent = useCallback(() => {
+    if (loading) {
+      return <ActivityIndicator size="large" color={theme.colors.tint} style={styles.indicator} />;
+    }
+    if (error) {
+      return (
+        <View style={styles.errorContainer}>
+          <Text style={styles.errorText}>{error}</Text>
+          {onRetry && (
+            <Pressable style={styles.retryButton} onPress={onRetry}>
+              <Text style={styles.retryText}>{t('home.retry')}</Text>
+            </Pressable>
+          )}
+        </View>
+      );
+    }
+    return null;
+  }, [loading, error, onRetry, styles, t, theme.colors.tint]);
+
   return (
-    <SafeAreaView edges={['top']} style={styles.container}>
+    <SafeAreaView edges={['top', 'bottom']} style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>{t('restaurantList.title')}</Text>
         <Text style={styles.subtitle}>{t('restaurantList.version', { version: appVersion })}</Text>
@@ -47,9 +69,10 @@ const RestaurantList = ({ restaurants, refreshing, onRefresh }: Props) => {
         keyExtractor={keyExtractor}
         renderItem={renderItem}
         contentContainerStyle={styles.list}
+        ListEmptyComponent={ListEmptyComponent}
         refreshing={refreshing}
         onRefresh={onRefresh}
-        getItemLayout={getItemLayout}
+        getItemLayout={loading || error ? undefined : getItemLayout}
         removeClippedSubviews
         maxToRenderPerBatch={10}
         windowSize={5}
