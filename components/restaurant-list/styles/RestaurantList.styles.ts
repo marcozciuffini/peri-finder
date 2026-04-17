@@ -6,7 +6,7 @@ export const createStyles = (theme: AppTheme) =>
   StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#000000',
+      marginTop: -5
     },
     header: {
       paddingTop: 24,
@@ -29,9 +29,12 @@ export const createStyles = (theme: AppTheme) =>
       textAlign: 'center',
       marginTop: 6,
     },
+    listContainer: {
+      flex: 1,
+    },
     flatList: {
       flex: 1,
-      backgroundColor: theme.colors.background,
+      backgroundColor: 'transparent',
     },
     list: {
       padding: 16,

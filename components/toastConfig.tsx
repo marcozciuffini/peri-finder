@@ -49,14 +49,15 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   nandosContainer: {
-    marginHorizontal: 8,
+    alignSelf: 'center',
+    minWidth: 280,
+    maxWidth: '90%',
     paddingHorizontal: 24,
     paddingVertical: 12,
-        backgroundColor: Palette.monza,
+    backgroundColor: Palette.monza,
     borderRadius: 3,
     alignItems: 'center',
     gap: 4,
-    alignSelf: 'stretch',
     transform: [{ rotate: '-2deg' }],
   },
   nandosText: {

@@ -5,14 +5,18 @@ import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import * as SystemUI from 'expo-system-ui';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Toast from 'react-native-toast-message';
-
+import AppHeader from '@/components/app-header/AppHeader';
 import { toastConfig } from '@/components/toastConfig';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import '@/i18n';
+import { getVersion } from '@/modules/app-version';
+
+const appVersion = getVersion();
 
 SplashScreen.preventAutoHideAsync();
 
@@ -21,6 +25,7 @@ export default function RootLayout() {
   const navTheme = colorScheme === 'dark' ? DarkTheme : DefaultTheme;
   const theme = useAppTheme();
   const insets = useSafeAreaInsets();
+  const { t } = useTranslation();
 
   const [loaded, error] = useFonts({
     'NandosHand': require('../assets/fonts/nandos-hand-alt.ttf'),
@@ -47,7 +52,17 @@ export default function RootLayout() {
 
       <ThemeProvider value={navTheme}>
         <Stack>
-          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="index"
+            options={{
+              header: () => (
+                <AppHeader
+                  title={t('restaurantList.title')}
+                  subtitle={t('restaurantList.version', { version: appVersion })}
+                />
+              ),
+            }}
+          />
           <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
         </Stack>
       <Toast config={toastConfig} topOffset={insets.top + 8} />

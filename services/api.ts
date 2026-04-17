@@ -1,5 +1,5 @@
-import { ApiResponse, create } from "apisauce";
 import i18n from "@/i18n";
+import { ApiResponse, create } from "apisauce";
 
 import { ApiResult, Restaurant, RestaurantsResponse } from "@/types/apiResponseTypes";
 

@@ -21,7 +21,7 @@ export const createStyles = (theme: AppTheme) =>
       paddingVertical: ITEM_PADDING_VERTICAL,
       marginBottom: ITEM_MARGIN_BOTTOM,
       borderRadius: 2,
-      borderWidth: 1,
+      borderWidth: 3,
       overflow: 'hidden',
       backgroundColor: theme.colors.surface,
       borderColor: theme.colors.border,
@@ -37,7 +37,6 @@ export const createStyles = (theme: AppTheme) =>
     },
     name: {
       fontSize: 18,
-      lineHeight: TEXT_LINE_HEIGHT,
       fontFamily: FontFamily.semiBold,
       color: theme.colors.tint,
     },
@@ -46,7 +45,7 @@ export const createStyles = (theme: AppTheme) =>
     },
     addressContainer: {
       flex: 1,
-      gap: TEXT_GAP,
+      justifyContent: 'space-evenly',
     },
     address: {
       fontSize: 15,
