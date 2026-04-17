@@ -6,6 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import RestaurantItem from '@/components/restaurant-item/RestaurantItem';
 import { ITEM_TOTAL } from '@/components/restaurant-item/styles/RestaurantItem.styles';
 import { useAppTheme } from '@/hooks/useAppTheme';
+import { getVersion } from '@/modules/app-version';
 import { type Restaurant } from '@/types/apiResponseTypes';
 import { createStyles } from './styles/RestaurantList.styles';
 
@@ -23,6 +24,8 @@ const getItemLayout = (_: ArrayLike<Restaurant> | null | undefined, index: numbe
   index,
 });
 
+const appVersion = getVersion();
+
 const RestaurantList = ({ restaurants, refreshing, onRefresh }: Props) => {
   const { t } = useTranslation();
   const theme = useAppTheme();
@@ -37,6 +40,7 @@ const RestaurantList = ({ restaurants, refreshing, onRefresh }: Props) => {
     <SafeAreaView edges={['top']} style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>{t('restaurantList.title')}</Text>
+        <Text style={styles.subtitle}>{t('restaurantList.version', { version: appVersion })}</Text>
       </View>
       <FlatList
         data={restaurants}

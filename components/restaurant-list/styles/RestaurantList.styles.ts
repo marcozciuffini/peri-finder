@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
 import { AppTheme } from '@/types/theme';
+import { StyleSheet } from 'react-native';
 
 export const createStyles = (theme: AppTheme) =>
   StyleSheet.create({
@@ -15,6 +15,11 @@ export const createStyles = (theme: AppTheme) =>
     },
     title: {
       fontSize: 28,
+      fontWeight: '800',
+      color: theme.colors.text,
+    },
+    subtitle: {
+      fontSize: 14,
       fontWeight: '800',
       color: theme.colors.text,
     },

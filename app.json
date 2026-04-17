@@ -2,14 +2,15 @@
   "expo": {
     "name": "peri-finder",
     "slug": "peri-finder",
-    "version": "1.0.0",
+    "version": "1.0.34",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "perifinder",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.marcozciuffini.perifinder"
     },
     "android": {
       "adaptiveIcon": {
@@ -19,7 +20,8 @@
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.marcozciuffini.perifinder"
     },
     "web": {
       "output": "static",

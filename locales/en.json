@@ -4,7 +4,8 @@
     "error": "Something went wrong"
   },
   "restaurantList": {
-    "title": "Nando's Restaurants"
+    "title": "Nando's Restaurants",
+    "version": "Version {{version}}"
   },
   "errors": {
     "timeout": "Request timed out",
