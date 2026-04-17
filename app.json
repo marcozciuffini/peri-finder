@@ -7,6 +7,11 @@
     "icon": "./assets/images/icon.png",
     "scheme": "perifinder",
     "userInterfaceStyle": "automatic",
+    "androidStatusBar": {
+      "barStyle": "light-content",
+      "backgroundColor": "#000000",
+      "translucent": false
+    },
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,

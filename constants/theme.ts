@@ -3,8 +3,8 @@
  * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
  */
 
-import { Platform } from 'react-native';
 import { AppTheme } from '@/types/theme';
+import { Platform } from 'react-native';
 
 export const Palette = {
   monza: '#CE0A24',       // 206, 10, 36
@@ -38,24 +38,28 @@ export const AppThemes: Record<'light' | 'dark', AppTheme> = {
     dark: false,
     colors: {
       background: '#FFF8F8',
-      surface: '#FFF0F0',
-      border: '#F2D6D6',
+      surface: '#FFF6EC',
+      border: '#F0D8D0',
       text: Palette.black,
       icon: '#7A5C5C',
       tint: Palette.monza,
       error: Palette.amaranth,
+      accent: '#D4A830',     
+      subtle: '#D9849A', 
     },
   },
   dark: {
     dark: true,
     colors: {
       background: '#1A0A0A',
-      surface: '#2A1010',
-      border: '#3D1A1A',
+      surface: '#241208',
+      border: '#3D2210',
       text: '#F5EDED',
       icon: '#A08080',
       tint: Palette.amaranth,
       error: Palette.mauvelous,
+      accent: '#B8882A',      
+      subtle: '#C4607A',     
     },
   },
 };

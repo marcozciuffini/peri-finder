@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import Toast from 'react-native-toast-message';
 
 import RestaurantList from '@/components/restaurant-list/RestaurantList';
 import { fetchRestaurants } from '@/services/api';
@@ -17,7 +18,11 @@ export default function HomeScreen() {
       setRestaurants(result.data);
       setError(null);
     } else {
-      setError(result.message);
+      if (isRefresh) {
+        Toast.show({ type: 'nandos', text1: result.message, text2: 'Please try again later' });
+      } else {
+        setError(result.message);
+      }
     }
     setLoading(false);
     setRefreshing(false);

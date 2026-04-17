@@ -1,6 +1,17 @@
-import { AppTheme } from '@/types/theme';
 import { FontFamily } from '@/constants/theme';
-import { StyleSheet } from 'react-native';
+import { AppTheme } from '@/types/theme';
+import { PixelRatio, StyleSheet } from 'react-native';
+
+const fontScale = PixelRatio.getFontScale();
+
+const ITEM_PADDING_VERTICAL = 16;
+const TEXT_LINE_HEIGHT = Math.ceil(24 * fontScale);
+const TEXT_LINES = 4;
+const TEXT_GAP = 4;
+const ITEM_MARGIN_BOTTOM = 16;
+
+export const ITEM_HEIGHT = ITEM_PADDING_VERTICAL * 2 + TEXT_LINE_HEIGHT * TEXT_LINES + TEXT_GAP * (TEXT_LINES - 1);
+export const ITEM_TOTAL = ITEM_HEIGHT + ITEM_MARGIN_BOTTOM;
 
 export const createStyles = (theme: AppTheme) =>
   StyleSheet.create({
@@ -9,36 +20,42 @@ export const createStyles = (theme: AppTheme) =>
       paddingHorizontal: 16,
       paddingVertical: ITEM_PADDING_VERTICAL,
       marginBottom: ITEM_MARGIN_BOTTOM,
-      borderRadius: 12,
+      borderRadius: 2,
       borderWidth: 1,
-      gap: TEXT_GAP,
       overflow: 'hidden',
       backgroundColor: theme.colors.surface,
       borderColor: theme.colors.border,
     },
+    nameRow: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      gap: 8,
+    },
+    nameContainer: {
+      flex: 1,
+    },
     name: {
-      fontSize: 16,
+      fontSize: 18,
+      lineHeight: TEXT_LINE_HEIGHT,
       fontFamily: FontFamily.semiBold,
       color: theme.colors.tint,
     },
+    namePressed: {
+      opacity: 0.5,
+    },
+    addressContainer: {
+      flex: 1,
+      gap: TEXT_GAP,
+    },
     address: {
-      fontSize: 14,
+      fontSize: 15,
       fontFamily: FontFamily.regular,
       color: theme.colors.text,
     },
     locality: {
-      fontSize: 13,
+      fontSize: 15,
       fontFamily: FontFamily.regular,
       color: theme.colors.icon,
     },
   });
-
-export const ITEM_PADDING_VERTICAL = 16;
-const TEXT_LINE_HEIGHT = 24;
-const TEXT_LINES = 3;
-export const TEXT_GAP = 4;
-export const ITEM_MARGIN_BOTTOM = 16;
-
-export const ITEM_HEIGHT =
-  ITEM_PADDING_VERTICAL * 2 + TEXT_LINE_HEIGHT * TEXT_LINES + TEXT_GAP * (TEXT_LINES - 1);
-export const ITEM_TOTAL = ITEM_HEIGHT + ITEM_MARGIN_BOTTOM;

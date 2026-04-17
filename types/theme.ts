@@ -11,4 +11,6 @@ export type ThemeColors = {
   icon: string;
   tint: string;
   error: string;
+  accent: string;
+  subtle: string;
 };
