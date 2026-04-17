@@ -17,7 +17,7 @@ const AppHeader = ({ title, subtitle }: Props) => {
   return (
     <>
       <View style={styles.container}>
-        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.title} numberOfLines={2} adjustsFontSizeToFit>{title}</Text>
         {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
       </View>
       <View style={styles.slant} />
