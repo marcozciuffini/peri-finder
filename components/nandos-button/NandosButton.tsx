@@ -1,4 +1,4 @@
-import { Pressable, Text } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 
 import { styles } from './styles/NandosButton.styles';
 
@@ -8,12 +8,12 @@ type Props = {
 };
 
 const NandosButton = ({ label, onPress }: Props) => (
-  <Pressable
-    style={({ pressed }) => [styles.button, pressed && styles.pressed]}
+  <TouchableOpacity
+    style={styles.button}
     onPress={onPress}
   >
     <Text style={styles.text}>{label}</Text>
-  </Pressable>
+  </TouchableOpacity>
 );
 
 export default NandosButton;

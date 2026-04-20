@@ -40,9 +40,6 @@ export const createStyles = (theme: AppTheme) =>
       fontFamily: FontFamily.semiBold,
       color: theme.colors.tint,
     },
-    namePressed: {
-      opacity: 0.5,
-    },
     addressContainer: {
       flex: 1,
       justifyContent: 'space-evenly',

@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 // Natural SVG dimensions — used to derive correct aspect ratios
 // side_piece_2: 247×722  side_piece: 155×594  side_piece_3: 354×663
 
-export const createStyles = (theme: AppTheme, screenHeight: number) => {
+export const createStyles = (theme: AppTheme, screenHeight: number, loadingScreen?: boolean) => {
   const topPieceHeight = screenHeight * 0.45;
   const bottomPieceHeight = screenHeight * 0.38;
 
@@ -19,7 +19,10 @@ export const createStyles = (theme: AppTheme, screenHeight: number) => {
     },
     piece: {
       position: 'absolute',
-      opacity: 0.40,
+      opacity: 0.4,
+    },
+    opacity: {
+      opacity: 1,
     },
     topLeft: {
       top: 0,

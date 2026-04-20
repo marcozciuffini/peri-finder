@@ -1,24 +1,28 @@
-import { Ionicons } from '@expo/vector-icons';
-import * as WebBrowser from 'expo-web-browser';
-import { memo, useMemo } from 'react';
-import { Linking, Platform, Pressable, Text, View } from 'react-native';
-
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { type Restaurant } from '@/types/apiResponseTypes';
+import { Ionicons } from '@expo/vector-icons';
+import * as Haptics from 'expo-haptics';
+import * as WebBrowser from 'expo-web-browser';
+import { memo, useMemo } from 'react';
+import { Linking, Platform, Text, TouchableOpacity, View } from 'react-native';
 import { createStyles } from './styles/RestaurantItem.styles';
 
 type Props = {
   restaurant: Restaurant;
 };
 
-const RestaurantItem = memo(({ restaurant }: Props) => {
+const RestaurantItem = memo(function RestaurantItem({ restaurant }: Props) {
   const theme = useAppTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
   const { streetAddress, addressLocality, postalCode } = restaurant.geo.address;
 
-  const onNamePress = () => WebBrowser.openBrowserAsync(restaurant.url);
+  const onNamePress = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    WebBrowser.openBrowserAsync(restaurant.url);
+  };
 
   const onMapPress = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     const query = encodeURIComponent(`Nando's ${restaurant.name}, ${postalCode}`);
     const url = Platform.select({
       ios: `maps:?q=${query}`,
@@ -32,17 +36,17 @@ const RestaurantItem = memo(({ restaurant }: Props) => {
   return (
     <View style={styles.item}>
       <View style={styles.nameRow}>
-        <Pressable
+        <TouchableOpacity
           onPress={onNamePress}
-          style={({ pressed }) => [styles.nameContainer, pressed && styles.namePressed]}
+          style={styles.nameContainer}
         >
           <Text style={styles.name} numberOfLines={1}>
             {restaurant.name}
           </Text>
-        </Pressable>
-        <Pressable onPress={onMapPress} hitSlop={8}>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={onMapPress} hitSlop={8}>
           <Ionicons name="location-outline" size={26} color={theme.colors.tint} />
-        </Pressable>
+        </TouchableOpacity>
       </View>
       <View style={styles.addressContainer}>
         {!!streetAddress && (

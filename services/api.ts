@@ -38,11 +38,9 @@ const handleResponse = <T>(res: ApiResponse<T>): ApiResult<T> => {
   };
 };
 
-const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
-
 export const fetchRestaurants = async (): Promise<ApiResult<Restaurant[]>> => {
-  await delay(1500);
-  const res = await nandosApi.get<RestaurantsResponse>("/restaurantlist.json");
+  
+  const res = await nandosApi.get<RestaurantsResponse>("/restaurantlist.json", {}, { headers: { 'Cache-Control': 'no-cache' } });
   const result = handleResponse(res);
 
   if (result.ok) {

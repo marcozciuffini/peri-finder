@@ -8,8 +8,8 @@
     "scheme": "perifinder",
     "userInterfaceStyle": "automatic",
     "androidStatusBar": {
-      "barStyle": "light-content",
-      "backgroundColor": "#000000",
+      "barStyle": "dark-content",
+      "backgroundColor": "#FFF8F8",
       "translucent": false
     },
     "newArchEnabled": true,
@@ -24,7 +24,7 @@
         "resizeMode": "contain",
         "backgroundColor": "#F5EDD8",
         "dark": {
-          "backgroundColor": "#F5EDD8"
+          "backgroundColor": "#000000"
         }
       },
       "adaptiveIcon": {
@@ -50,9 +50,9 @@
           "image": "./assets/images/nandos-icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#F5EDD8",
+          "backgroundColor": "#FFF8F8",
           "dark": {
-            "backgroundColor": "#F5EDD8"
+            "backgroundColor": "#000000"
           }
         }
       ]

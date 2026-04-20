@@ -11,10 +11,6 @@ export const styles = StyleSheet.create({
     borderColor: '#FFFFFF55',
     transform: [{ rotate: '-2deg' }],
   },
-  pressed: {
-    opacity: 0.7,
-    transform: [{ rotate: '-2deg' }, { scale: 0.96 }],
-  },
   text: {
     fontFamily: FontFamily.brand,
     fontSize: 20,

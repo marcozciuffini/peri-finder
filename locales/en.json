@@ -1,7 +1,13 @@
 {
   "home": {
-    "loading": "Loading restaurants...",
+    "loadingPhrases": [
+      "Finding your nearest PERi-PERi",
+      "Heating up the grill",
+      "Counting the chillies",
+      "Basting the chicken"
+    ],
     "error": "Something went wrong",
+    "errorSubtitle": "Please try again later",
     "retry": "Try again"
   },
   "restaurantList": {

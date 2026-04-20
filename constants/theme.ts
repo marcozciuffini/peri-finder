@@ -11,6 +11,7 @@ export const Palette = {
   amaranth: '#EB3F55',    // 235, 63, 85
   mauvelous: '#F091AA',   // 240, 145, 170
   brightSun: '#FFCD41',   // 255, 205, 65
+  flame: '#E8650A',       // 232, 101, 10
   black: '#000000',
 };
 
@@ -44,8 +45,10 @@ export const AppThemes: Record<'light' | 'dark', AppTheme> = {
       icon: '#7A5C5C',
       tint: Palette.monza,
       error: Palette.amaranth,
-      accent: '#D4A830',     
-      subtle: '#D9849A', 
+      accent: '#D4A830',
+      subtle: '#D9849A',
+      loadingBlock: Palette.black,
+      loadingBlockText: '#FFFFFF',
     },
   },
   dark: {
@@ -58,8 +61,10 @@ export const AppThemes: Record<'light' | 'dark', AppTheme> = {
       icon: '#A08080',
       tint: Palette.amaranth,
       error: Palette.mauvelous,
-      accent: '#B8882A',      
-      subtle: '#C4607A',     
+      accent: '#B8882A',
+      subtle: '#C4607A',
+      loadingBlock: Palette.flame,
+      loadingBlockText: Palette.black,
     },
   },
 };

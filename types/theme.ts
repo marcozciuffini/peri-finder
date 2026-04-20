@@ -13,4 +13,6 @@ export type ThemeColors = {
   error: string;
   accent: string;
   subtle: string;
+  loadingBlock: string;
+  loadingBlockText: string;
 };
