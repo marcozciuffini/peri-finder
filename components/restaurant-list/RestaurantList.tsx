@@ -4,7 +4,7 @@ import { ITEM_TOTAL } from '@/components/restaurant-item/styles/RestaurantItem.s
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { type Restaurant } from '@/types/apiResponseTypes';
 import * as Haptics from 'expo-haptics';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { FlatList, RefreshControl, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import RestaurantListEmpty from './RestaurantListEmpty';
@@ -23,7 +23,6 @@ const keyExtractor = (item: Restaurant) => item.url;
 const viewabilityConfig = { viewAreaCoveragePercentThreshold: 50 };
 const onViewableItemsChanged = () => Haptics.selectionAsync();
 
-
 const getItemLayout = (_: ArrayLike<Restaurant> | null | undefined, index: number) => ({
   length: ITEM_TOTAL,
   offset: ITEM_TOTAL * index,
@@ -32,18 +31,15 @@ const getItemLayout = (_: ArrayLike<Restaurant> | null | undefined, index: numbe
 
 const RestaurantList = ({ restaurants, loading, refreshing, onRefetch, error }: Props) => {
   const theme = useAppTheme();
-  const styles = createStyles(theme);
+  const styles = useMemo(() => createStyles(theme), [theme]);
+
+  const hasRestaurants = !loading && !error && restaurants.length > 0;
 
   const renderItem = useCallback(
     ({ item }: { item: Restaurant }) => <RestaurantItem restaurant={item} />,
     []
   );
-  
-  const EmptyComponent = useCallback(
-    () => <RestaurantListEmpty loading={loading} error={error} onRetry={onRefetch} />,
-    [loading, error, onRefetch]
-  );
-  
+
   const handleRefresh = useCallback(() => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
     onRefetch();
@@ -54,14 +50,17 @@ const RestaurantList = ({ restaurants, loading, refreshing, onRefetch, error }: 
       <View style={styles.listContainer}>
         <Background />
         <FlatList
+          testID="restaurant-list"
           style={styles.flatList}
           data={restaurants}
           keyExtractor={keyExtractor}
           renderItem={renderItem}
           contentContainerStyle={styles.list}
-          ListEmptyComponent={EmptyComponent}
+          ListEmptyComponent={
+            <RestaurantListEmpty loading={loading} hasRestaurants={hasRestaurants} error={error} onRetry={onRefetch} />
+          }
           refreshControl={
-            restaurants.length > 0 ? (
+            restaurants.length > 0 || (!loading && !error) ? (
               <RefreshControl
                 refreshing={refreshing}
                 onRefresh={handleRefresh}
@@ -77,7 +76,7 @@ const RestaurantList = ({ restaurants, loading, refreshing, onRefetch, error }: 
           removeClippedSubviews
           windowSize={5}
           initialNumToRender={15}
-      />
+        />
       </View>
     </SafeAreaView>
   );

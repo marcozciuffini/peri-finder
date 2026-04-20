@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { useRestaurantStore } from './restaurantStore';
 
-type Phase = 'splash' | 'entering' | 'fetching' | 'exiting' | 'hidden';
+export type Phase = 'splash' | 'entering' | 'fetching' | 'exiting' | 'hidden';
 
 type LoadingStore = {
   animationPhase: Phase;
@@ -17,8 +17,11 @@ export const useLoadingStore = create<LoadingStore>((set, get) => ({
   entryComplete: async () => {
     if (get().animationPhase !== 'entering') return;
     set({ animationPhase: 'fetching' });
-    await useRestaurantStore.getState().fetchRestaurants();
-    get().fetchComplete();
+    try {
+      await useRestaurantStore.getState().fetchRestaurants();
+    } finally {
+      get().fetchComplete();
+    }
   },
   fetchComplete: () => set({ animationPhase: 'exiting' }),
   exitComplete: () => set({ animationPhase: 'hidden' }),

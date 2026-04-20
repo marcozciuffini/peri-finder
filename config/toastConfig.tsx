@@ -12,7 +12,7 @@ export const toastConfig: ToastConfig = {
     />
   ),
   error: ({ text1, text2 }) => (
-    <View style={styles.nandosContainer}>
+    <View testID="error-toast-container" style={styles.nandosContainer}>
       <Text style={styles.nandosText}>{text1}</Text>
       {text2 && <Text style={styles.nandosSubtext}>{text2}</Text>}
     </View>

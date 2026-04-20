@@ -1,7 +1,6 @@
 import AppHeader from '@/components/app-header/AppHeader';
 import LoadingView from '@/components/loading-view/LoadingView';
-import { toastConfig } from '@/components/toastConfig';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { toastConfig } from '@/config/toastConfig';
 import { useLayoutConfig } from '@/hooks/useLayoutConfig';
 import '@/i18n';
 import { getVersion } from '@/modules/app-version';
@@ -11,6 +10,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useColorScheme } from 'react-native';
 import 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Toast from 'react-native-toast-message';

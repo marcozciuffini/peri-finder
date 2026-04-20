@@ -22,8 +22,10 @@ export const useRestaurantStore = create<RestaurantStore>((set) => ({
   fetchRestaurants: async () => {
     set({ isFetchingRestaurants: true, error: null });
     const result = await fetchRestaurantsApi();
-    if (result.ok && result.data) {
+    if (result.ok && result.data?.length) {
       set({ restaurants: result.data, isFetchingRestaurants: false });
+    } else if (result.ok) {
+      set({ restaurants: [], isFetchingRestaurants: false });
     } else {
       set({ error: result.message, isFetchingRestaurants: false });
     }
@@ -35,8 +37,10 @@ export const useRestaurantStore = create<RestaurantStore>((set) => ({
       return hasData ? { isRefetching: true, error: null } : { isFetchingRestaurants: true, error: null };
     });
     const [result] = await Promise.all([fetchRestaurantsApi(), new Promise((r) => setTimeout(r, 250))]);
-    if (result.ok && result.data) {
+    if (result.ok && result.data?.length) {
       set({ restaurants: result.data, isFetchingRestaurants: false, isRefetching: false });
+    } else if (result.ok) {
+      set({ restaurants: [], isFetchingRestaurants: false, isRefetching: false });
     } else {
       set({ error: result.message, isFetchingRestaurants: false, isRefetching: false });
       if (hasData) {

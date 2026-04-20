@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Text } from 'react-native';
 
 import { useAppTheme } from '@/hooks/useAppTheme';
@@ -10,7 +10,7 @@ type Props = {
 
 const LoadingText = ({ text }: Props) => {
   const theme = useAppTheme();
-  const styles = createStyles(theme);
+  const styles = useMemo(() => createStyles(theme), [theme]);
   const [dotIndex, setDotIndex] = useState(0);
 
   useEffect(() => {
@@ -26,9 +26,9 @@ const LoadingText = ({ text }: Props) => {
   return (
     <Text style={styles.text}>
       {text}
-      <Text style={{ color: dotColor(1) }}>.</Text>
-      <Text style={{ color: dotColor(2) }}>.</Text>
-      <Text style={{ color: dotColor(3) }}>.</Text>
+      <Text testID="dot-1" style={{ color: dotColor(1) }}>.</Text>
+      <Text testID="dot-2" style={{ color: dotColor(2) }}>.</Text>
+      <Text testID="dot-3" style={{ color: dotColor(3) }}>.</Text>
     </Text>
   );
 };

@@ -39,14 +39,15 @@ const RestaurantItem = memo(function RestaurantItem({ restaurant }: Props) {
         <TouchableOpacity
           onPress={onNamePress}
           style={styles.nameContainer}
+          testID="name-button"
         >
           <Text style={styles.name} numberOfLines={1}>
             {restaurant.name}
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={onMapPress} hitSlop={8}>
+        {restaurant?.name && postalCode && <TouchableOpacity onPress={onMapPress} hitSlop={8} testID="map-button">
           <Ionicons name="location-outline" size={26} color={theme.colors.tint} />
-        </TouchableOpacity>
+        </TouchableOpacity>}
       </View>
       <View style={styles.addressContainer}>
         {!!streetAddress && (
@@ -59,9 +60,9 @@ const RestaurantItem = memo(function RestaurantItem({ restaurant }: Props) {
             {addressLocality}
           </Text>
         )}
-        <Text style={styles.locality} numberOfLines={1} selectable>
+        {!!postalCode && <Text style={styles.locality} numberOfLines={1} selectable>
           {postalCode}
-        </Text>
+        </Text>}
       </View>
     </View>
   );

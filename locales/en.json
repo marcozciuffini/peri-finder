@@ -8,6 +8,7 @@
     ],
     "error": "Something went wrong",
     "errorSubtitle": "Please try again later",
+    "noRestaurants": "No restaurants found",
     "retry": "Try again"
   },
   "restaurantList": {
