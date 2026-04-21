@@ -37,15 +37,7 @@ export default function RootLayout() {
     <ThemeProvider value={navTheme}>
       {fontsReady && (
         <>
-          <Stack>
-            <Stack.Screen
-              name="index"
-              options={{
-                header: renderHeader,
-              }}
-            />
-            <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-          </Stack>
+          <Stack screenOptions={{ header: renderHeader }} />
           <Toast config={toastConfig} topOffset={insets.top + 8} />
         </>
       )}
