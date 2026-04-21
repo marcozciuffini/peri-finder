@@ -16,11 +16,40 @@ A mobile app for finding Nando's restaurants, built with Expo (bare workflow) an
 
 ```bash
 npm install
-npm run ios       # iOS
-npm run android   # Android (start an emulator or plug in a device first)
 ```
 
 > A full native build is recommended — the app uses a custom native module that won't function correctly via `expo start` alone.
+
+## iOS
+
+**Debug**
+```bash
+npm run ios
+```
+
+Alternatively, open `ios/PERiFinder.xcworkspace` in Xcode, select a connected device or simulator as the destination, and hit **Run** (⌘R). Note that `npm run ios` handles `pod install` automatically — if building directly through Xcode you'll need to run `cd ios && pod install` manually first.
+
+**Release**
+```bash
+npm run ios:release
+```
+
+Alternatively, follow the same Xcode steps as debug, but first go to **Product → Scheme → Edit Scheme**, set the Build Configuration to **Release**, then hit **Run** (⌘R).
+
+## Android
+
+Make sure `ANDROID_HOME` and `JAVA_HOME` are set in your shell profile before running — see Gotchas below if you hit errors.
+
+**Debug**
+```bash
+npm run android
+```
+Start an emulator in Android Studio first, or plug in a device.
+
+**Release**
+```bash
+npm run android:release
+```
 
 ## Changes to native modules
 
@@ -28,16 +57,15 @@ If `ios/` or `android/` are missing, out of date, or you've changed `app.json` o
 
 ```bash
 npx expo prebuild --clean
-cd ios && pod install && cd ..
+npm run ios
 ```
 
 ## Testing
 
 ### Unit and integration tests (Jest)
 ```bash
-npm test                  # run all tests
-npm run test:watch        # watch mode
-npm run test:coverage     # with coverage report
+npm run test
+npm run test:watch
 ```
 
 Tests live in `__tests__/` folders next to the code they cover. Unit tests cover individual components, hooks, and stores in isolation. The integration test at `app/__tests__/RestaurantsPage.test.tsx` tests the full page → store → API flow with only the network boundary mocked.

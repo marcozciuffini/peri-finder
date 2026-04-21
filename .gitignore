@@ -39,6 +39,4 @@ yarn-error.*
 # test coverage
 coverage/
 
-app-example
-
 
