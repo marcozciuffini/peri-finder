@@ -1,50 +1,81 @@
-# Welcome to your Expo app 👋
+# peri-finder
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A mobile app for finding Nando's restaurants, built with Expo (bare workflow) and React Native.
 
-## Get started
+## Prerequisites
 
-1. Install dependencies
+| Tool | Version Built With |
+|------|---------|
+| Node | 24.14.1 |
+| Ruby | 3.3.11 |
+| CocoaPods | 1.16.2 |
+| Xcode | 26.4.1 |
+| Java (JDK) | OpenJDK 17.0.18 |
 
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+## Setup
 
 ```bash
-npm run reset-project
+npm install
+npm run ios       # iOS
+npm run android   # Android (start an emulator or plug in a device first)
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+> A full native build is recommended — the app uses a custom native module that won't function correctly via `expo start` alone.
 
-## Learn more
+## Changes to native modules
 
-To learn more about developing your project with Expo, look at the following resources:
+If `ios/` or `android/` are missing, out of date, or you've changed `app.json` or `modules/`:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+npx expo prebuild --clean
+cd ios && pod install && cd ..
+```
 
-## Join the community
+## Testing
 
-Join our community of developers creating universal apps.
+### Unit and integration tests (Jest)
+```bash
+npm test                  # run all tests
+npm run test:watch        # watch mode
+npm run test:coverage     # with coverage report
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Tests live in `__tests__/` folders next to the code they cover. Unit tests cover individual components, hooks, and stores in isolation. The integration test at `app/__tests__/RestaurantsPage.test.tsx` tests the full page → store → API flow with only the network boundary mocked.
+
+### E2E tests (Maestro)
+
+```bash
+brew install maestro
+npm run ios
+maestro test .maestro/suite.yml
+```
+
+Flows live in `.maestro/flows/`. Shared setup is in `.maestro/subflows/app_startup.yml`.
+
+## Project structure
+
+```
+app/          # File-based routes (Expo Router)
+components/   # UI components, each in their own folder with a styles/ subfolder
+config/       # App-level configuration (toast styling)
+constants/    # Theme colours, font families, palette
+types/        # Shared TypeScript types
+hooks/        # Custom hooks (single-concern)
+stores/       # Zustand state stores
+services/     # API layer (apisauce)
+modules/      # Custom native modules
+locales/      # i18n translation files (en only)
+assets/       # Images, fonts
+.maestro/     # Maestro E2E flows
+```
+
+## Gotchas
+
+- **Custom native module** — `modules/app-version` is a native module. Changes to it require re-running `npx expo prebuild` + a full rebuild. A JS-only reload won't pick them up.
+
+- **Android environment** — Requires `ANDROID_HOME` and `JAVA_HOME` set in your shell profile:
+  ```bash
+  export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+  export ANDROID_HOME=$HOME/Library/Android/sdk
+  export PATH=$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools
+  ```
