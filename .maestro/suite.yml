@@ -1,0 +1,5 @@
+appId: com.marcozciuffini.perifinder
+---
+- runFlow: flows/restaurants.yml
+- runFlow: flows/restaurant_web.yml
+- runFlow: flows/restaurant_map.yml

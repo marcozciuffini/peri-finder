@@ -1,0 +1,8 @@
+appId: com.marcozciuffini.perifinder
+---
+- launchApp
+- runFlow: ../subflows/app_startup.yml
+- tapOn:
+    id: "map-button"
+- stopApp:
+    appId: com.marcozciuffini.perifinder

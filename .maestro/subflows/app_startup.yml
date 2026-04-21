@@ -1,0 +1,9 @@
+appId: com.marcozciuffini.perifinder
+---
+- waitForAnimationToEnd
+- assertNotVisible:
+    id: "loading-indicator"
+- assertVisible:
+    id: "restaurant-list"
+- assertVisible: "Nando's.*"
+- waitForAnimationToEnd

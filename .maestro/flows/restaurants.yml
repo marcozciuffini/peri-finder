@@ -1,0 +1,14 @@
+appId: com.marcozciuffini.perifinder
+---
+- launchApp
+- runFlow: ../subflows/app_startup.yml
+- assertVisible: "Nando's.*"
+- scrollUntilVisible:
+    element: "Birmingham.*"
+    direction: DOWN
+    speed: 60
+    visibilityPercentage: 10
+    timeout: 30000
+    waitToSettleTimeoutMs: 500
+- stopApp:
+    appId: com.marcozciuffini.perifinder
