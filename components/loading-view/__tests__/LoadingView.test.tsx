@@ -9,8 +9,9 @@ jest.mock('../useLoadingView', () => ({
 
 jest.mock('@/components/background/Background', () => 'Background');
 jest.mock('@/components/loading-text/LoadingText', () => {
-  const { Text } = require('react-native');
-  return ({ text }: { text: string }) => <Text>{text}</Text>;
+  const { Text } = jest.requireActual('react-native');
+  function MockLoadingText({ text }: { text: string }) { return <Text>{text}</Text>; }
+  return MockLoadingText;
 });
 
 const visibleState = {

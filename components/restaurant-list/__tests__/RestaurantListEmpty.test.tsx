@@ -2,10 +2,11 @@ import { render, fireEvent } from '@testing-library/react-native';
 import RestaurantListEmpty from '../RestaurantListEmpty';
 
 jest.mock('@/components/nandos-button/NandosButton', () => {
-  const { TouchableOpacity, Text } = require('react-native');
-  return ({ label, onPress }: { label: string; onPress: () => void }) => (
-    <TouchableOpacity onPress={onPress}><Text>{label}</Text></TouchableOpacity>
-  );
+  const { TouchableOpacity, Text } = jest.requireActual('react-native');
+  function MockNandosButton({ label, onPress }: { label: string; onPress: () => void }) {
+    return <TouchableOpacity onPress={onPress}><Text>{label}</Text></TouchableOpacity>;
+  }
+  return MockNandosButton;
 });
 
 describe('RestaurantListEmpty', () => {

@@ -1,4 +1,4 @@
-import { act, fireEvent, render } from '@testing-library/react-native';
+import { act, render } from '@testing-library/react-native';
 import * as Haptics from 'expo-haptics';
 import RestaurantList from '../RestaurantList';
 
@@ -9,14 +9,16 @@ jest.mock('react-native-safe-area-context', () => ({
 }));
 jest.mock('@/components/background/Background', () => () => null);
 jest.mock('@/components/restaurant-item/RestaurantItem', () => {
-  const { Text } = require('react-native');
-  return ({ restaurant }: any) => <Text testID="restaurant-item">{restaurant.name}</Text>;
+  const { Text } = jest.requireActual('react-native');
+  function MockRestaurantItem({ restaurant }: any) { return <Text testID="restaurant-item">{restaurant.name}</Text>; }
+  return MockRestaurantItem;
 });
 jest.mock('@/components/restaurant-list/RestaurantListEmpty', () => {
-  const { Text } = require('react-native');
-  return ({ loading, error }: any) => (
-    <Text testID="list-empty">{loading ? 'loading' : error ?? 'empty'}</Text>
-  );
+  const { Text } = jest.requireActual('react-native');
+  function MockRestaurantListEmpty({ loading, error }: any) {
+    return <Text testID="list-empty">{loading ? 'loading' : error ?? 'empty'}</Text>;
+  }
+  return MockRestaurantListEmpty;
 });
 
 const sellyOak = {

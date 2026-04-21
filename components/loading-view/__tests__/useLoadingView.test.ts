@@ -1,6 +1,7 @@
 import en from '@/locales/en.json';
 import { Phase, useLoadingStore } from '@/stores/loadingStore';
 import { act, renderHook } from '@testing-library/react-native';
+import { useLoadingView } from '../useLoadingView';
 
 const mockHideAsync = jest.fn(() => Promise.resolve());
 jest.mock('expo-splash-screen', () => ({
@@ -30,8 +31,6 @@ jest.mock('@/stores/restaurantStore', () => ({
     getState: () => ({ fetchRestaurants: mockFetchRestaurants }),
   },
 }));
-
-import { useLoadingView } from '../useLoadingView';
 
 const seedPhase = (phase: Phase) =>
   useLoadingStore.setState({ animationPhase: phase });

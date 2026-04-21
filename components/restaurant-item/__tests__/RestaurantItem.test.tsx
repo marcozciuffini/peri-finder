@@ -1,4 +1,5 @@
 import { fireEvent, render } from '@testing-library/react-native';
+import { Linking } from 'react-native';
 import RestaurantItem from '../RestaurantItem';
 
 jest.mock('expo-haptics', () => ({
@@ -11,7 +12,6 @@ jest.mock('expo-web-browser', () => ({
   openBrowserAsync: (...args: any[]) => mockOpenBrowserAsync(...args),
 }));
 
-import { Linking } from 'react-native';
 const mockOpenURL = jest.spyOn(Linking, 'openURL');
 
 const fullRestaurant = {
