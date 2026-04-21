@@ -1,8 +1,6 @@
-import { Image, Text, View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Image, Text, View, useColorScheme } from 'react-native';
 
-import { useAppTheme } from '@/hooks/useAppTheme';
-import { createStyles } from './styles/AppHeader.styles';
+import { styles as themeStyles } from './styles/AppHeader.styles';
 
 type Props = {
   title: string;
@@ -10,12 +8,11 @@ type Props = {
 };
 
 const AppHeader = ({ title, subtitle }: Props) => {
-  const theme = useAppTheme();
-  const insets = useSafeAreaInsets();
-  const styles = createStyles(theme, insets.top);
+  const colorScheme = useColorScheme() ?? 'light';
+  const styles = themeStyles[colorScheme];
 
   return (
-    <View style={styles.header}>
+    <>
       <View style={styles.mainContainer}>
         <Image source={require('@/assets/images/bird.png')} style={styles.bird} resizeMode="contain" />
         <Image source={require('@/assets/images/chilli.png')} style={styles.chilli} resizeMode="contain" />
@@ -23,7 +20,7 @@ const AppHeader = ({ title, subtitle }: Props) => {
         {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
       </View>
       <View style={styles.slant} />
-    </View>
+    </>
   );
 };
 

@@ -1,12 +1,12 @@
-import { FontFamily } from '@/constants/theme';
+import { AppThemes, FontFamily } from '@/constants/theme';
 import { AppTheme } from '@/types/theme';
+import Constants from 'expo-constants';
 import { StyleSheet } from 'react-native';
 
-export const createStyles = (theme: AppTheme, statusBarHeight: number) =>
+const statusBarHeight = Constants.statusBarHeight ?? 0;
+
+const build = (theme: AppTheme) =>
   StyleSheet.create({
-    header: {
-      overflow: 'hidden',
-    },
     mainContainer: {
       zIndex: 10,
       backgroundColor: '#000000',
@@ -60,3 +60,8 @@ export const createStyles = (theme: AppTheme, statusBarHeight: number) =>
       marginTop: 6,
     },
   });
+
+export const styles = {
+  light: build(AppThemes.light),
+  dark: build(AppThemes.dark),
+};

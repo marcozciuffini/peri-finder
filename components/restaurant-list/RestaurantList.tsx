@@ -4,11 +4,11 @@ import { ITEM_TOTAL } from '@/components/restaurant-item/styles/RestaurantItem.s
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { type Restaurant } from '@/types/apiResponseTypes';
 import * as Haptics from 'expo-haptics';
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import { FlatList, RefreshControl, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import RestaurantListEmpty from './RestaurantListEmpty';
-import { createStyles } from './styles/RestaurantList.styles';
+import { styles as themeStyles } from './styles/RestaurantList.styles';
 
 type Props = {
   restaurants: Restaurant[];
@@ -31,7 +31,7 @@ const getItemLayout = (_: ArrayLike<Restaurant> | null | undefined, index: numbe
 
 const RestaurantList = ({ restaurants, loading, refreshing, onRefetch, error }: Props) => {
   const theme = useAppTheme();
-  const styles = useMemo(() => createStyles(theme), [theme]);
+  const styles = themeStyles[theme.dark ? 'dark' : 'light'];
 
   const hasRestaurants = !loading && !error && restaurants.length > 0;
 

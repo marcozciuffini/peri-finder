@@ -1,8 +1,8 @@
-import { FontFamily } from '@/constants/theme';
+import { AppThemes, FontFamily } from '@/constants/theme';
 import { AppTheme } from '@/types/theme';
 import { StyleSheet } from 'react-native';
 
-export const createStyles = (theme: AppTheme) =>
+const build = (theme: AppTheme) =>
   StyleSheet.create({
     text: {
       fontSize: 32,
@@ -15,3 +15,8 @@ export const createStyles = (theme: AppTheme) =>
       color: 'transparent',
     },
   });
+
+export const styles = {
+  light: build(AppThemes.light),
+  dark: build(AppThemes.dark),
+};

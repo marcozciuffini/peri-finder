@@ -1,15 +1,14 @@
-import { memo, useMemo } from 'react';
-import { Animated, Image, View } from 'react-native';
+import { memo } from 'react';
+import { Animated, Image, View, useColorScheme } from 'react-native';
 
-import { useAppTheme } from '@/hooks/useAppTheme';
 import Background from '../background/Background';
 import LoadingText from '../loading-text/LoadingText';
-import { createStyles } from './styles/LoadingView.styles';
+import { styles as themeStyles } from './styles/LoadingView.styles';
 import { useLoadingView } from './useLoadingView';
 
 const LoadingView = memo(function LoadingView() {
-  const theme = useAppTheme();
-  const styles = useMemo(() => createStyles(theme), [theme]);
+  const colorScheme = useColorScheme() ?? 'light';
+  const styles = themeStyles[colorScheme];
 
   const { visible, phrase, blockY, containerOpacity } = useLoadingView();
 

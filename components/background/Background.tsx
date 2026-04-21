@@ -1,18 +1,15 @@
 import { Image } from 'expo-image';
-import { StyleSheet, View, useColorScheme, useWindowDimensions } from 'react-native';
+import { StyleSheet, View, useColorScheme } from 'react-native';
 
-import { useAppTheme } from '@/hooks/useAppTheme';
-import { createStyles } from './styles/Background.styles';
+import { styles as themeStyles } from './styles/Background.styles';
 
 type Props = {
   loadingScreen?: boolean;
 };
 
 const Background = ({ loadingScreen }: Props) => {
-  const theme = useAppTheme();
-  const colorScheme = useColorScheme();
-  const { height } = useWindowDimensions();
-  const styles = createStyles(theme, height);
+  const colorScheme = useColorScheme() ?? 'light';
+  const styles = themeStyles[colorScheme];
 
   if (colorScheme === 'dark') {
     return (

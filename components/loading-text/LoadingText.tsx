@@ -1,16 +1,17 @@
-import { useEffect, useMemo, useState } from 'react';
-import { Text } from 'react-native';
+import { useEffect, useState } from 'react';
+import { Text, useColorScheme } from 'react-native';
 
 import { useAppTheme } from '@/hooks/useAppTheme';
-import { createStyles } from './styles/LoadingText.styles';
+import { styles as themeStyles } from './styles/LoadingText.styles';
 
 type Props = {
   text: string;
 };
 
 const LoadingText = ({ text }: Props) => {
+  const colorScheme = useColorScheme() ?? 'light';
   const theme = useAppTheme();
-  const styles = useMemo(() => createStyles(theme), [theme]);
+  const styles = themeStyles[colorScheme];
   const [dotIndex, setDotIndex] = useState(0);
 
   useEffect(() => {

@@ -1,7 +1,8 @@
+import { AppThemes } from '@/constants/theme';
 import { AppTheme } from '@/types/theme';
 import { StyleSheet } from 'react-native';
 
-export const createStyles = (theme: AppTheme) =>
+const build = (theme: AppTheme) =>
   StyleSheet.create({
     container: {
       ...StyleSheet.absoluteFillObject,
@@ -31,3 +32,8 @@ export const createStyles = (theme: AppTheme) =>
       borderColor: theme.colors.border,
     },
   });
+
+export const styles = {
+  light: build(AppThemes.light),
+  dark: build(AppThemes.dark),
+};

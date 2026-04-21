@@ -1,33 +1,12 @@
-import { FontFamily } from '@/constants/theme';
+import { AppThemes, FontFamily } from '@/constants/theme';
 import { AppTheme } from '@/types/theme';
 import { StyleSheet } from 'react-native';
 
-export const createStyles = (theme: AppTheme) =>
+const build = (theme: AppTheme) =>
   StyleSheet.create({
     container: {
       flex: 1,
       marginTop: -5
-    },
-    header: {
-      paddingTop: 24,
-      paddingHorizontal: 16,
-      paddingBottom: 20,
-      backgroundColor: '#000000',
-      borderBottomWidth: 1,
-      borderBottomColor: theme.colors.subtle + '55',
-    },
-    title: {
-      fontSize: 28,
-      fontFamily: 'NandosHand',
-      color: '#FFFFFF',
-      textAlign: 'center',
-    },
-    subtitle: {
-      fontSize: 16,
-      fontFamily: 'NandosHand',
-      color: theme.colors.tint,
-      textAlign: 'center',
-      marginTop: 6,
     },
     listContainer: {
       flex: 1,
@@ -55,3 +34,8 @@ export const createStyles = (theme: AppTheme) =>
       paddingHorizontal: 32,
     },
   });
+
+export const styles = {
+  light: build(AppThemes.light),
+  dark: build(AppThemes.dark),
+};

@@ -3,9 +3,9 @@ import { type Restaurant } from '@/types/apiResponseTypes';
 import { Ionicons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
 import * as WebBrowser from 'expo-web-browser';
-import { memo, useMemo } from 'react';
+import { memo } from 'react';
 import { Linking, Platform, Text, TouchableOpacity, View } from 'react-native';
-import { createStyles } from './styles/RestaurantItem.styles';
+import { styles as themeStyles } from './styles/RestaurantItem.styles';
 
 type Props = {
   restaurant: Restaurant;
@@ -13,7 +13,7 @@ type Props = {
 
 const RestaurantItem = memo(function RestaurantItem({ restaurant }: Props) {
   const theme = useAppTheme();
-  const styles = useMemo(() => createStyles(theme), [theme]);
+  const styles = themeStyles[theme.dark ? 'dark' : 'light'];
   const { streetAddress, addressLocality, postalCode } = restaurant.geo.address;
 
   const onNamePress = () => {

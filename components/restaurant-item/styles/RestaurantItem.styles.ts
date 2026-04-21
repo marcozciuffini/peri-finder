@@ -1,4 +1,4 @@
-import { FontFamily } from '@/constants/theme';
+import { AppThemes, FontFamily } from '@/constants/theme';
 import { AppTheme } from '@/types/theme';
 import { PixelRatio, StyleSheet } from 'react-native';
 
@@ -13,7 +13,7 @@ const ITEM_MARGIN_BOTTOM = 16;
 export const ITEM_HEIGHT = ITEM_PADDING_VERTICAL * 2 + TEXT_LINE_HEIGHT * TEXT_LINES + TEXT_GAP * (TEXT_LINES - 1);
 export const ITEM_TOTAL = ITEM_HEIGHT + ITEM_MARGIN_BOTTOM;
 
-export const createStyles = (theme: AppTheme) =>
+const build = (theme: AppTheme) =>
   StyleSheet.create({
     item: {
       height: ITEM_HEIGHT,
@@ -55,3 +55,8 @@ export const createStyles = (theme: AppTheme) =>
       color: theme.colors.icon,
     },
   });
+
+export const styles = {
+  light: build(AppThemes.light),
+  dark: build(AppThemes.dark),
+};
