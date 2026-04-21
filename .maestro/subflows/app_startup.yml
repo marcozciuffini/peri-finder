@@ -2,6 +2,8 @@ appId: com.marcozciuffini.perifinder
 ---
 - waitForAnimationToEnd
 - assertNotVisible:
+    id: "loading-view"
+- assertNotVisible:
     id: "loading-indicator"
 - assertVisible:
     id: "restaurant-list"

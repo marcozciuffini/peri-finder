@@ -15,7 +15,7 @@ const LoadingView = memo(function LoadingView() {
   if (!visible) return null;
 
   return (
-    <Animated.View style={[styles.container, { opacity: containerOpacity }]} pointerEvents="auto">
+    <Animated.View testID="loading-view" style={[styles.container, { opacity: containerOpacity }]} pointerEvents="auto">
       <Background loadingScreen />
       <View style={styles.iconContainer}>
         <Image

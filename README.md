@@ -72,8 +72,13 @@ Tests live in `__tests__/` folders next to the code they cover. Unit tests cover
 
 ### E2E tests (Maestro)
 
+Install Maestro via the official script (recommended — Homebrew checksums can get out of sync with new releases):
 ```bash
-brew install maestro
+curl -Ls "https://get.maestro.mobile.dev" | bash
+```
+
+Then build and run the app on a simulator first:
+```bash
 npm run ios
 maestro test .maestro/suite.yml
 ```

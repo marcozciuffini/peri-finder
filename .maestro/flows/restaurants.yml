@@ -4,7 +4,7 @@ appId: com.marcozciuffini.perifinder
 - runFlow: ../subflows/app_startup.yml
 - assertVisible: "Nando's.*"
 - scrollUntilVisible:
-    element: "Birmingham.*"
+    element: "Barking.*"
     direction: DOWN
     speed: 60
     visibilityPercentage: 10
