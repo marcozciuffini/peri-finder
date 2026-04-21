@@ -18,7 +18,7 @@ export const createStyles = (theme: AppTheme) =>
     },
     block: {
       position: 'absolute',
-      top: '63%',
+      bottom: '20%',
       left: 24,
       right: 24,
       borderRadius: 3,
