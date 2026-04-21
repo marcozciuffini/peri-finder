@@ -1,0 +1,11 @@
+appId: com.marcozciuffini.perifinder
+# Requires: mock server NOT running on port 3000
+---
+- launchApp
+- runFlow: ../subflows/app_startup_unhappy.yml
+- assertVisible: "No network connection"
+- assertVisible: "Try again"
+- tapOn: "Try again"
+- assertVisible: "No network connection"
+- stopApp:
+    appId: com.marcozciuffini.perifinder

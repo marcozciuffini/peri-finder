@@ -16,7 +16,10 @@ A mobile app for finding Nando's restaurants, built with Expo (bare workflow) an
 
 ```bash
 npm install
+cp .env.example .env
 ```
+
+The `.env` file won't be committed, but the app falls back to the production URL if it's absent so this step is optional.
 
 > A full native build is recommended — the app uses a custom native module that won't function correctly via `expo start` alone.
 
@@ -26,8 +29,9 @@ npm install
 ```bash
 npm run ios
 ```
+If you hit CocoaPods errors, see Gotchas below.
 
-Alternatively, open `ios/PERiFinder.xcworkspace` in Xcode, select a connected device or simulator as the destination, and hit **Run** (⌘R). Note that `npm run ios` handles `pod install` automatically — if building directly through Xcode you'll need to run `cd ios && pod install` manually first.
+Alternatively, open `ios/PERiFinder.xcworkspace` in Xcode, select a connected device or simulator as the destination, and hit **Run** (⌘R). Note that `npm run ios` handles `pod install` automatically
 
 **Release**
 ```bash
@@ -77,13 +81,34 @@ Install Maestro via the official script (recommended — Homebrew checksums can 
 curl -Ls "https://get.maestro.mobile.dev" | bash
 ```
 
-Then build and run the app on a simulator first:
+Flows live in `.maestro/flows/`. Shared setup is in `.maestro/subflows/`.
+
+**Happy path suite** — runs against the real API, use a standard build:
 ```bash
-npm run ios
 maestro test .maestro/suite.yml
 ```
 
-Flows live in `.maestro/flows/`. Shared setup is in `.maestro/subflows/app_startup.yml`.
+**Unhappy path flows** — run against a local mock server. Build with the mock URL baked in first:
+```bash
+npm run ios:maestro       # iOS simulator
+npm run android:maestro   # Android emulator
+```
+
+Mock data lives in `.maestro/mock/`.
+
+**Empty state** — requires empty mock server running:
+```bash
+# Terminal 1
+npm run mock-server:empty
+
+# Terminal 2
+maestro test .maestro/flows/error_empty.yml
+```
+
+**Network error** — requires no server running on port 3000:
+```bash
+maestro test .maestro/flows/error_network.yml
+```
 
 ## Project structure
 
@@ -105,6 +130,12 @@ assets/       # Images, fonts
 ## Gotchas
 
 - **Custom native module** — `modules/app-version` is a native module. Changes to it require re-running `npx expo prebuild` + a full rebuild. A JS-only reload won't pick them up.
+
+- **CocoaPods out of date** — If you see pod-related errors when building for iOS, run:
+  ```bash
+  cd ios && pod install
+  ```
+  Then retry your build.
 
 - **Android environment** — Requires `ANDROID_HOME` and `JAVA_HOME` set in your shell profile:
   ```bash

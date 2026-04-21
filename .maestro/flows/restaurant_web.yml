@@ -4,7 +4,7 @@ appId: com.marcozciuffini.perifinder
 - runFlow: ../subflows/app_startup.yml
 - assertVisible: "Aberdeen.*"
 - tapOn:
-    text: "Aberdeen.*"
+    text: "Aberdeen -.*"
 - assertVisible: ".*nandos.co.uk.*"
 - stopApp:
     appId: com.marcozciuffini.perifinder

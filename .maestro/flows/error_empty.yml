@@ -1,0 +1,9 @@
+appId: com.marcozciuffini.perifinder
+# Requires: npm run mock-server:empty
+---
+- launchApp
+- runFlow: ../subflows/app_startup_unhappy.yml
+- assertVisible: "No restaurants found"
+- assertNotVisible: "Try again"
+- stopApp:
+    appId: com.marcozciuffini.perifinder

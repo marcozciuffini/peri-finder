@@ -4,7 +4,7 @@ import { ApiResponse, create } from "apisauce";
 import { ApiResult, Restaurant, RestaurantsResponse } from "@/types/apiResponseTypes";
 
 const nandosApi = create({
-  baseURL: "https://storage.googleapis.com/nandos-engineering-public/coding-challenge-rn",
+  baseURL: process.env.EXPO_PUBLIC_API_BASE_URL ?? "https://storage.googleapis.com/nandos-engineering-public/coding-challenge-rn",
   timeout: 8000,
 });
 

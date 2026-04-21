@@ -1,0 +1,41 @@
+{
+  "data": {
+    "restaurant": {
+      "items": [
+        {
+          "name": "Nando's Aberdeen",
+          "url": "https://www.nandos.co.uk/restaurants/aberdeen",
+          "geo": {
+            "address": {
+              "streetAddress": "Unit 4, Aberdeen Retail Park",
+              "addressLocality": "Aberdeen",
+              "postalCode": "AB24 5SU"
+            }
+          }
+        },
+        {
+          "name": "Nando's Barking",
+          "url": "https://www.nandos.co.uk/restaurants/barking",
+          "geo": {
+            "address": {
+              "streetAddress": "Vicarage Field Shopping Centre",
+              "addressLocality": "Barking",
+              "postalCode": "IG11 8DQ"
+            }
+          }
+        },
+        {
+          "name": "Nando's Selly Oak",
+          "url": "https://www.nandos.co.uk/restaurants/selly-oak",
+          "geo": {
+            "address": {
+              "streetAddress": "The Triangle, Bristol Road",
+              "addressLocality": "Selly Oak",
+              "postalCode": "B29 6BJ"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
