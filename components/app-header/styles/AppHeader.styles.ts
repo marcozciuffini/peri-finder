@@ -4,7 +4,10 @@ import { StyleSheet } from 'react-native';
 
 export const createStyles = (theme: AppTheme, statusBarHeight: number) =>
   StyleSheet.create({
-    container: {
+    header: {
+      overflow: 'hidden',
+    },
+    mainContainer: {
       zIndex: 10,
       backgroundColor: '#000000',
       paddingHorizontal: 16,
@@ -20,17 +23,39 @@ export const createStyles = (theme: AppTheme, statusBarHeight: number) =>
       borderBottomWidth: 2,
       borderBottomColor: theme.colors.surface,
     },
+    bird: {
+      position: 'absolute',
+      left: -11,
+      bottom: -15,
+      height: 90,
+      width: 90,
+      opacity: 0.8,
+      aspectRatio: 1,
+      transform: [{ rotate: '-12deg' }],
+    },
+    chilli: {
+      position: 'absolute',
+      right: 10,
+      top: statusBarHeight - 5,
+      height: 50,
+      width: 50,
+      transform: [{ rotate: '22deg' }],
+    },
     title: {
       fontSize: 28,
       fontFamily: FontFamily.brand,
       color: '#FFFFFF',
       textAlign: 'center',
+      maxWidth: '80%',
+      alignSelf: 'center',
     },
     subtitle: {
-      fontSize: 16,
+      fontSize: 17,
       fontFamily: FontFamily.brand,
       color: theme.colors.tint,
       textAlign: 'center',
+      maxWidth: '80%',
+      alignSelf: 'center',
       marginTop: 6,
     },
   });
